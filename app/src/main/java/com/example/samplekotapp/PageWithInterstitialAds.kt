@@ -12,7 +12,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class PageWithInterstitialAds : AppCompatActivity() {
     var mInterstitialAd: InterstitialAd? = null
-    var placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("interstitialAds")
+    private var placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_interstitialAds")
     var interstitialIndex = 0
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,6 @@ class PageWithInterstitialAds : AppCompatActivity() {
         showAdButton.setOnClickListener {
             if (mInterstitialAd != null) {
                 mInterstitialAd!!.show(this@PageWithInterstitialAds)
-            } else {
             }
         }
     }
@@ -32,7 +31,7 @@ class PageWithInterstitialAds : AppCompatActivity() {
     private fun loadInterstitialAd(adRequest: AdRequest?, placement: Array<String>) {
         if (placement.isEmpty()) //wrapper logic to handle errors
             return
-        InterstitialAd.load(this, placement[interstitialIndex]!!, adRequest!!,
+        InterstitialAd.load(this, placement[interstitialIndex], adRequest!!,
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd

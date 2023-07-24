@@ -13,7 +13,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
 class PageWithRewardedAds : AppCompatActivity() {
     private var rewardedAd: RewardedAd? = null
-    private val placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("rewardedAds")
+    private val placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_rewardedAds")
     private var rewardedIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class PageWithRewardedAds : AppCompatActivity() {
     }
 
     private fun loadRewardedAd(placement: Array<String>) {
-        if (placement == null || placement.isEmpty()) //wrapper logic to handle errors
+        if (placement.isEmpty()) //wrapper logic to handle errors
             return
         RewardedAd.load(this, placement[rewardedIndex]!!,
             AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
@@ -30,7 +30,7 @@ class PageWithRewardedAds : AppCompatActivity() {
                     rewardedAd = null
                     Toast.makeText(
                         this@PageWithRewardedAds,
-                        "Rewared Ad failed to load @index: $rewardedIndex", Toast.LENGTH_SHORT
+                        "Rewarded Ad failed to load @index: $rewardedIndex", Toast.LENGTH_SHORT
                     ).show()
                     loadNextAd()
                 }
@@ -39,7 +39,7 @@ class PageWithRewardedAds : AppCompatActivity() {
                     rewardedAd = ad
                     Toast.makeText(
                         this@PageWithRewardedAds,
-                        "Rewared Ad loaded @index: $rewardedIndex", Toast.LENGTH_SHORT
+                        "Rewarded Ad loaded @index: $rewardedIndex", Toast.LENGTH_SHORT
                     ).show()
                 }
             })

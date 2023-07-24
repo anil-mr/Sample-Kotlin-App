@@ -1,6 +1,7 @@
 package com.example.samplekotapp
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +13,9 @@ import com.google.android.gms.ads.LoadAdError
 
 class PageWithBannerAds : AppCompatActivity() {
     var index = 0
-    private var adUnits = AppBrodaPlacementHandler.loadPlacements("bannerAds")
-
+    private var adUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_bannerAds")
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("PageWithBannerAds", "Adunits ${adUnits.size}");
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_banner_ads)
         loadBannerAd(adUnits)

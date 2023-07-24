@@ -19,7 +19,7 @@ import com.example.samplekotapp.databinding.AdUnifiedBinding
 class PageWithNativeAds : AppCompatActivity() {
 
     private lateinit var viewAds: FrameLayout
-    private var adUnits = AppBrodaPlacementHandler.loadPlacements("nativeAds")
+    private var adUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_nativeAds")
     private var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +74,7 @@ class PageWithNativeAds : AppCompatActivity() {
         nativeAdView.advertiserView = unifiedBinding.adAdvertiser
         unifiedBinding.adHeadline.text = nativeAd.headline
         nativeAd.mediaContent?.let {
-            unifiedBinding.adMedia.setMediaContent(it)
+            unifiedBinding.adMedia.mediaContent = it
         }
 
         if (nativeAd.body == null) {
@@ -143,8 +143,6 @@ class PageWithNativeAds : AppCompatActivity() {
                         super.onVideoEnd()
                     }
                 }
-        } else {
-
         }
 
 
