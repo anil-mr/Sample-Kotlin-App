@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.MobileAds
 
-const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     private lateinit var testButton : Button
     override fun onCreate(savedInstanceState: Bundle?) {

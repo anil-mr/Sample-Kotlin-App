@@ -10,10 +10,8 @@ import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 object AppBrodaPlacementHandler {
     @SuppressLint("StaticFieldLeak")
     private var firebaseRemoteConfig: FirebaseRemoteConfig? = null;
-    private var abAppKey: String? = null
 
     fun initRemoteConfigAndSavePlacements(context: Context) {
-        abAppKey = context.packageName.replace(".", "_") + "_"
         val mFirebaseRemoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
         mFirebaseRemoteConfig.setConfigSettingsAsync(remoteConfigSettings {
             minimumFetchIntervalInSeconds = 0

@@ -1,43 +1,38 @@
 package com.example.samplekotapp
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.samplekotapp.databinding.AdUnifiedBinding
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.VideoController
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
-import com.example.samplekotapp.databinding.AdUnifiedBinding
 
 class PageWithNativeAds : AppCompatActivity() {
 
     private lateinit var viewAds: FrameLayout
-    private var adUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_nativeAds")
-    private var index = 0
+    private var nativeAdUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_nativeAds")
+    private var nativeIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_native_ads)
         viewAds = findViewById(R.id.view_ads)
-        loadNativeAd()
+        loadNativeAd(nativeAdUnits)
     }
 
-    private fun loadNativeAd() {
-        if (index >= adUnits.size) {
-            return
-        }
-
-        val adUnitId = adUnits[index]
+    private fun loadNativeAd(adUnits:Array<String>) {
+        val adUnitId = adUnits[nativeIndex]
 
         val adLoader = AdLoader.Builder(this, adUnitId)
-            .forNativeAd { nativeAd: NativeAd ->
+            .forNativeAd { nativeAd: NativeAd ->;
                 viewAds.visibility = View.VISIBLE
                 val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val viewUnifiedBinding = AdUnifiedBinding.inflate(layoutInflater)
@@ -45,14 +40,17 @@ class PageWithNativeAds : AppCompatActivity() {
                 viewAds.removeAllViews()
                 viewAds.addView(viewUnifiedBinding.root)
                 // Ad loaded successfully, no need to load another ad unit.
-                Toast.makeText(this, "Native ad loaded @index :$index", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Native ad loaded @index :$nativeIndex", Toast.LENGTH_SHORT).show()
+                if (isDestroyed) {
+                    nativeAd.destroy()
+                    return@forNativeAd
+                }
             }
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(p0: LoadAdError) {
                     // Ad failed to load, try loading the next ad unit.
-                    Toast.makeText(this@PageWithNativeAds, "Native ad loading failed @index :$index", Toast.LENGTH_SHORT).show()
-                    index++
-                    loadNativeAd()
+                    Toast.makeText(this@PageWithNativeAds, "Native ad loading failed @index :$nativeIndex", Toast.LENGTH_SHORT).show()
+                    loadNextAd()
                 }
             })
             .withNativeAdOptions(NativeAdOptions.Builder().build())
@@ -126,27 +124,17 @@ class PageWithNativeAds : AppCompatActivity() {
             unifiedBinding.adAdvertiser.visibility = View.VISIBLE
             unifiedBinding.adAdvertiser.text = nativeAd.advertiser
 
-
         }
-
-
         nativeAdView.setNativeAd(nativeAd)
-
-        val vc = nativeAd.mediaContent?.videoController
-
-        if (vc != null && vc.hasVideoContent()) {
-            vc.videoLifecycleCallbacks =
-                object : VideoController.VideoLifecycleCallbacks() {
-
-                    override fun onVideoEnd() {
-
-                        super.onVideoEnd()
-                    }
-                }
-        }
-
 
     }
 
-
+    private fun loadNextAd() { //triggers next ad load
+        if (nativeIndex == nativeAdUnits.size) {
+            nativeIndex = 0
+            return
+        }
+        nativeIndex++
+        loadNativeAd(nativeAdUnits)
+    }
 }
