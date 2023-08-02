@@ -32,7 +32,7 @@ class PageWithNativeAds : AppCompatActivity() {
         val adUnitId = adUnits[nativeIndex]
 
         val adLoader = AdLoader.Builder(this, adUnitId)
-            .forNativeAd { nativeAd: NativeAd ->;
+            .forNativeAd { nativeAd: NativeAd ->
                 viewAds.visibility = View.VISIBLE
                 val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val viewUnifiedBinding = AdUnifiedBinding.inflate(layoutInflater)
