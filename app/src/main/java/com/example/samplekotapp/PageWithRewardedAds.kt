@@ -22,9 +22,9 @@ class PageWithRewardedAds : AppCompatActivity() {
     }
 
     private fun loadRewardedAd(placement: Array<String>) {
-        if (placement.isEmpty()) //wrapper logic to handle errors
+        if (placement.isEmpty() || rewardedIndex >= placement.size ) //wrapper logic to handle errors
             return
-        RewardedAd.load(this, placement[rewardedIndex]!!,
+        RewardedAd.load(this, placement[rewardedIndex],
             AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     rewardedAd = null
@@ -61,7 +61,7 @@ class PageWithRewardedAds : AppCompatActivity() {
     }
 
     private fun loadNextAd() { //triggers next ad load
-        if (rewardedIndex == placement.size) {
+        if (rewardedIndex >= placement.size) {
             rewardedIndex = 0
             return
         }

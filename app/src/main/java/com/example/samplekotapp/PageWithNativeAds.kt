@@ -29,6 +29,8 @@ class PageWithNativeAds : AppCompatActivity() {
     }
 
     private fun loadNativeAd(adUnits:Array<String>) {
+        if(adUnits.isEmpty() || nativeIndex >= adUnits.size)return
+
         val adUnitId = adUnits[nativeIndex]
 
         val adLoader = AdLoader.Builder(this, adUnitId)
@@ -130,7 +132,7 @@ class PageWithNativeAds : AppCompatActivity() {
     }
 
     private fun loadNextAd() { //triggers next ad load
-        if (nativeIndex == nativeAdUnits.size) {
+        if (nativeIndex >= nativeAdUnits.size) {
             nativeIndex = 0
             return
         }

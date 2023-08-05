@@ -29,7 +29,7 @@ class PageWithInterstitialAds : AppCompatActivity() {
     }
 
     private fun loadInterstitialAd(adRequest: AdRequest?, placement: Array<String>) {
-        if (placement.isEmpty()) //wrapper logic to handle errors
+        if (placement.isEmpty() || interstitialIndex >= placement.size) //wrapper logic to handle errors
             return
         InterstitialAd.load(this, placement[interstitialIndex], adRequest!!,
             object : InterstitialAdLoadCallback() {
@@ -54,7 +54,7 @@ class PageWithInterstitialAds : AppCompatActivity() {
     }
 
     fun loadNextAd(adRequest: AdRequest?, placement: Array<String>) {
-        if (interstitialIndex == placement.size) {
+        if (interstitialIndex >= placement.size) {
             interstitialIndex = 0
             return
         }
