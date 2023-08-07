@@ -132,11 +132,11 @@ class PageWithNativeAds : AppCompatActivity() {
     }
 
     private fun loadNextAd() { //triggers next ad load
+        nativeIndex++
         if (nativeIndex >= nativeAdUnits.size) {
             nativeIndex = 0
             return
         }
-        nativeIndex++
         loadNativeAd(nativeAdUnits)
     }
 }

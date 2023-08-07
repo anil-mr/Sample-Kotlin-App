@@ -55,11 +55,11 @@ class PageWithBannerAds : AppCompatActivity() {
     }
 
     private fun loadNextAd() { //triggers next ad load
+        bannerIndex++
         if (bannerIndex >= adUnits.size) {
             bannerIndex = 0
             return
         }
-        bannerIndex++
         loadBannerAd(adUnits)
     }
 

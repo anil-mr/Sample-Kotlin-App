@@ -54,11 +54,11 @@ class PageWithInterstitialAds : AppCompatActivity() {
     }
 
     fun loadNextAd(adRequest: AdRequest?, placement: Array<String>) {
+        interstitialIndex++
         if (interstitialIndex >= placement.size) {
             interstitialIndex = 0
             return
         }
-        interstitialIndex++
         loadInterstitialAd(adRequest, placement)
     }
 }

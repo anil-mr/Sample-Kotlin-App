@@ -61,11 +61,11 @@ class PageWithRewardedAds : AppCompatActivity() {
     }
 
     private fun loadNextAd() { //triggers next ad load
+        rewardedIndex++
         if (rewardedIndex >= placement.size) {
             rewardedIndex = 0
             return
         }
-        rewardedIndex++
         loadRewardedAd(placement)
     }
 }
