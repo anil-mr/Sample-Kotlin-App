@@ -15,7 +15,6 @@ class PageWithBannerAds : AppCompatActivity() {
     var bannerIndex = 0
     private var adUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_bannerAds")
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("PageWithBannerAds", "Adunits ${adUnits.size}");
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_banner_ads)
         loadBannerAd(adUnits)
@@ -50,6 +49,8 @@ class PageWithBannerAds : AppCompatActivity() {
                     "Banner ad loaded @index :$bannerIndex",
                     Toast.LENGTH_SHORT
                 ).show()
+                // Reset bannerIndex to 0
+                bannerIndex = 0
             }
         }
     }

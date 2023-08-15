@@ -43,6 +43,8 @@ class PageWithNativeAds : AppCompatActivity() {
                 viewAds.addView(viewUnifiedBinding.root)
                 // Ad loaded successfully, no need to load another ad unit.
                 Toast.makeText(this, "Native ad loaded @index :$nativeIndex", Toast.LENGTH_SHORT).show()
+                // Reset nativeIndex to 0
+                nativeIndex = 0
                 if (isDestroyed) {
                     nativeAd.destroy()
                     return@forNativeAd

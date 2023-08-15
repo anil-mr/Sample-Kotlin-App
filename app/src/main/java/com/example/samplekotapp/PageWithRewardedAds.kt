@@ -41,6 +41,8 @@ class PageWithRewardedAds : AppCompatActivity() {
                         this@PageWithRewardedAds,
                         "Rewarded Ad loaded @index: $rewardedIndex", Toast.LENGTH_SHORT
                     ).show()
+                    // Reset rewardedIndex to 0
+                    rewardedIndex = 0;
                 }
             })
     }

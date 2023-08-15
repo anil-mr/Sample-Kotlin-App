@@ -39,6 +39,8 @@ class PageWithInterstitialAds : AppCompatActivity() {
                         this@PageWithInterstitialAds,
                         "Interstitial Ad Loaded @index: $interstitialIndex", Toast.LENGTH_SHORT
                     ).show()
+                    // Reset interstitialIndex to 0
+                    interstitialIndex = 0
                 }
 
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
