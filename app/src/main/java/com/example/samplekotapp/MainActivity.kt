@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MobileAds.initialize(this) {}
-        AppBrodaPlacementHandler.initRemoteConfigAndSavePlacements()
+        AppBrodaAdUnitHandler.initRemoteConfigAndSaveAdUnits()
 
         testButton = findViewById(R.id.testBtn)
         var counter = 0

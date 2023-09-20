@@ -1,6 +1,5 @@
 package com.example.samplekotapp
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -12,14 +11,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class PageWithInterstitialAds : AppCompatActivity() {
     var mInterstitialAd: InterstitialAd? = null
-    private var placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_interstitialAds")
+    private var adUnit: Array<String> = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_interstitialAds")
     var interstitialIndex = 0
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_interstitial_ads)
         val adRequest = AdRequest.Builder().build()
-        loadInterstitialAd(adRequest, placement)
+        loadInterstitialAd(adRequest, adUnit)
         val showAdButton = findViewById<Button>(R.id.showInterstitialAd)
         showAdButton.setOnClickListener {
             if (mInterstitialAd != null) {
@@ -28,10 +26,10 @@ class PageWithInterstitialAds : AppCompatActivity() {
         }
     }
 
-    private fun loadInterstitialAd(adRequest: AdRequest?, placement: Array<String>) {
-        if (placement.isEmpty() || interstitialIndex >= placement.size) //wrapper logic to handle errors
+    private fun loadInterstitialAd(adRequest: AdRequest?, adUnit: Array<String>) {
+        if (adUnit.isEmpty() || interstitialIndex >= adUnit.size) //wrapper logic to handle errors
             return
-        InterstitialAd.load(this, placement[interstitialIndex], adRequest!!,
+        InterstitialAd.load(this, adUnit[interstitialIndex], adRequest!!,
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
@@ -50,17 +48,17 @@ class PageWithInterstitialAds : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     mInterstitialAd = null
-                    loadNextAd(adRequest, placement)
+                    loadNextAd(adRequest, adUnit)
                 }
             })
     }
 
-    fun loadNextAd(adRequest: AdRequest?, placement: Array<String>) {
+    fun loadNextAd(adRequest: AdRequest?, adUnit: Array<String>) {
         interstitialIndex++
-        if (interstitialIndex >= placement.size) {
+        if (interstitialIndex >= adUnit.size) {
             interstitialIndex = 0
             return
         }
-        loadInterstitialAd(adRequest, placement)
+        loadInterstitialAd(adRequest, adUnit)
     }
 }

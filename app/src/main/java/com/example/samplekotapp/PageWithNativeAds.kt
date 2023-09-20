@@ -18,20 +18,20 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 class PageWithNativeAds : AppCompatActivity() {
 
     private lateinit var viewAds: FrameLayout
-    private var nativeAdUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_nativeAds")
+    private var adUnit = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_nativeAds")
     private var nativeIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_native_ads)
         viewAds = findViewById(R.id.view_ads)
-        loadNativeAd(nativeAdUnits)
+        loadNativeAd(adUnit)
     }
 
-    private fun loadNativeAd(adUnits:Array<String>) {
-        if(adUnits.isEmpty() || nativeIndex >= adUnits.size)return
+    private fun loadNativeAd(adUnit:Array<String>) {
+        if(adUnit.isEmpty() || nativeIndex >= adUnit.size)return
 
-        val adUnitId = adUnits[nativeIndex]
+        val adUnitId = adUnit[nativeIndex]
 
         val adLoader = AdLoader.Builder(this, adUnitId)
             .forNativeAd { nativeAd: NativeAd ->
@@ -135,10 +135,10 @@ class PageWithNativeAds : AppCompatActivity() {
 
     private fun loadNextAd() { //triggers next ad load
         nativeIndex++
-        if (nativeIndex >= nativeAdUnits.size) {
+        if (nativeIndex >= adUnit.size) {
             nativeIndex = 0
             return
         }
-        loadNativeAd(nativeAdUnits)
+        loadNativeAd(adUnit)
     }
 }
