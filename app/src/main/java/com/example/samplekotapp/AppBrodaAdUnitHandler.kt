@@ -5,20 +5,21 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 
-object AppBrodaPlacementHandler {
-    fun initRemoteConfigAndSavePlacements() {
+object AppBrodaAdUnitHandler {
+    fun initRemoteConfigAndSaveAdUnits() {
         val mFirebaseRemoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
         mFirebaseRemoteConfig.setConfigSettingsAsync(remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 0
+            minimumFetchIntervalInSeconds = 900
         })
+        // set the minimum fetch interval to 0 during testing
         mFirebaseRemoteConfig.fetchAndActivate()
     }
 
-    fun fetchAndSavePlacements() {
+    fun fetchAndSaveAdUnits() {
         Firebase.remoteConfig.fetchAndActivate()
     }
 
-    fun loadPlacements(key: String): Array<String> {
+    fun loadAdUnit(key: String): Array<String> {
         val value = FirebaseRemoteConfig.getInstance().getString(key)
         if (value.isEmpty()) return arrayOf()
         return convertToArray(value)
