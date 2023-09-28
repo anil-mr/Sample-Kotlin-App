@@ -13,18 +13,18 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
 class PageWithRewardedAds : AppCompatActivity() {
     private var rewardedAd: RewardedAd? = null
-    private val placement: Array<String> = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_rewardedAds")
+    private val adUnit: Array<String> = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_rewardedAds")
     private var rewardedIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_rewarded_ads)
-        loadRewardedAd(placement)
+        loadRewardedAd(adUnit)
     }
 
-    private fun loadRewardedAd(placement: Array<String>) {
-        if (placement.isEmpty() || rewardedIndex >= placement.size ) //wrapper logic to handle errors
+    private fun loadRewardedAd(adUnit: Array<String>) {
+        if (adUnit.isEmpty() || rewardedIndex >= adUnit.size ) //wrapper logic to handle errors
             return
-        RewardedAd.load(this, placement[rewardedIndex],
+        RewardedAd.load(this, adUnit[rewardedIndex],
             AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     rewardedAd = null
@@ -64,10 +64,10 @@ class PageWithRewardedAds : AppCompatActivity() {
 
     private fun loadNextAd() { //triggers next ad load
         rewardedIndex++
-        if (rewardedIndex >= placement.size) {
+        if (rewardedIndex >= adUnit.size) {
             rewardedIndex = 0
             return
         }
-        loadRewardedAd(placement)
+        loadRewardedAd(adUnit)
     }
 }

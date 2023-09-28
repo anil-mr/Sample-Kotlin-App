@@ -1,7 +1,6 @@
 package com.example.samplekotapp
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,19 +12,19 @@ import com.google.android.gms.ads.LoadAdError
 
 class PageWithBannerAds : AppCompatActivity() {
     var bannerIndex = 0
-    private var adUnits = AppBrodaPlacementHandler.loadPlacements("com_example_samplekotapp_bannerAds")
+    private var adUnit = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_bannerAds")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_banner_ads)
-        loadBannerAd(adUnits)
+        loadBannerAd(adUnit)
 
     }
 
-    private fun loadBannerAd(adUnits: Array<String>?) {
-        if (adUnits.isNullOrEmpty() || bannerIndex >= adUnits.size) return  //wrapper logic to handle errors
+    private fun loadBannerAd(adUnit: Array<String>?) {
+        if (adUnit.isNullOrEmpty() || bannerIndex >= adUnit.size) return  //wrapper logic to handle errors
         val adview = AdView(this)
         val adContainer = findViewById<RelativeLayout>(R.id.bannerAdView)
-        val adUnitId = adUnits[bannerIndex]
+        val adUnitId = adUnit[bannerIndex]
         adview.adUnitId = adUnitId
         adview.setAdSize(AdSize.BANNER)
         adview.loadAd(
@@ -57,11 +56,11 @@ class PageWithBannerAds : AppCompatActivity() {
 
     private fun loadNextAd() { //triggers next ad load
         bannerIndex++
-        if (bannerIndex >= adUnits.size) {
+        if (bannerIndex >= adUnit.size) {
             bannerIndex = 0
             return
         }
-        loadBannerAd(adUnits)
+        loadBannerAd(adUnit)
     }
 
 }
