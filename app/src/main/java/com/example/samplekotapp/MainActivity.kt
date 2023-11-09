@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appbrodasampleapp.AppBrodaAdUnitHandler
 import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
@@ -13,8 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MobileAds.initialize(this) {}
-        AppBrodaAdUnitHandler.initRemoteConfigAndSaveAdUnits()
+        MobileAds.initialize(this) {
+            AppBrodaAdUnitHandler.initRemoteConfigAndSaveAdUnits(this);
+        }
+
 
         testButton = findViewById(R.id.testBtn)
         var counter = 0

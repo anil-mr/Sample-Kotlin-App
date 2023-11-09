@@ -1,33 +1,497 @@
 {
   "project_info": {
-    "project_number": "121306027147",
-    "project_id": "myfirstproject-dc455",
-    "storage_bucket": "myfirstproject-dc455.appspot.com"
+    "project_number": "803649900255",
+    "project_id": "new-test-123qq12324",
+    "storage_bucket": "new-test-123qq12324.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:121306027147:android:4fb05ea137e5a2e7dd308e",
+        "mobilesdk_app_id": "1:803649900255:android:28dd9ac5dd8b96976f236a",
         "android_client_info": {
-          "package_name": "com.example.samplekotapp"
+          "package_name": "air.com.sesameworkshop.ResilienceThinkBreathDo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "121306027147-dv7a6jphuta9ov3dodao3sf3n3rqm11u.apps.googleusercontent.com",
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBrNKSVDWBOTjIWXAKfkBJriaZ89EHT1xo"
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "121306027147-dv7a6jphuta9ov3dodao3sf3n3rqm11u.apps.googleusercontent.com",
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:c44eb6ca82846d326f236a",
+        "android_client_info": {
+          "package_name": "com.AppBroda.testAdsDemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:635aa790d463b5e86f236a",
+        "android_client_info": {
+          "package_name": "com.example.appbrodasampleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:7e1451f4ee29efce6f236a",
+        "android_client_info": {
+          "package_name": "com.example.samplekotapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:c575a7b486aa655c6f236a",
+        "android_client_info": {
+          "package_name": "com.gamesforkids.doodlecoloringgame.glowart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:ef2630b3b980760e6f236a",
+        "android_client_info": {
+          "package_name": "com.global.dzgqq.google"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:b55852332ecd0e6c6f236a",
+        "android_client_info": {
+          "package_name": "com.google.android.apps.automotive.gamesnacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:8bf9d73f65d853576f236a",
+        "android_client_info": {
+          "package_name": "com.halfbrick.jetpackjoyride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:618939e4578476bc6f236a",
+        "android_client_info": {
+          "package_name": "com.iz.drawing.kids.coloring.baby.toddler.painting.doodle.draw.learning.games"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:a0ca798117e6d2bd6f236a",
+        "android_client_info": {
+          "package_name": "com.netmarble.tog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:e3c775d570d79f5e6f236a",
+        "android_client_info": {
+          "package_name": "com.originatorkids.EndlessNumbers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:76423b5be50098c36f236a",
+        "android_client_info": {
+          "package_name": "com.playrix.gardenscapes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:2e568d0c519601486f236a",
+        "android_client_info": {
+          "package_name": "com.playrix.township"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:35abad6e9453600f6f236a",
+        "android_client_info": {
+          "package_name": "com.sinyee.babybus.icecream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:f5e0f27cac9b19d46f236a",
+        "android_client_info": {
+          "package_name": "com.spinthewheel.roulettedecision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:4df7fb93fcc11a986f236a",
+        "android_client_info": {
+          "package_name": "com.topgamesinc.evony"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803649900255:android:c3fa06b464f0dce26f236a",
+        "android_client_info": {
+          "package_name": "com.zitga.ninja.stickman.legends.shadow.wars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXs8Gxtrocr8aYJwwTOMtr2YNGB17F_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803649900255-jbof3p07p2idlqpo5bb0ju1vaqriesbv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -27,10 +27,12 @@
             android:exported="false"
             android:hardwareAccelerated="true" />
 
+        <!--<meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5102812288750729~3942592046" />-->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5102812288750729~3942592046" />
-
+            android:value="ca-app-pub-5102812288750729~2658372486" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

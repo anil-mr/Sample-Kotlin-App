@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appbrodasampleapp.AppBrodaAdUnitHandler
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -20,12 +21,14 @@ class PageWithBannerAds : AppCompatActivity() {
 
     }
 
-    private fun loadBannerAd(adUnit: Array<String>?) {
+    private fun loadBannerAd(adUnit: Array<out String?>) {
         if (adUnit.isNullOrEmpty() || bannerIndex >= adUnit.size) return  //wrapper logic to handle errors
         val adview = AdView(this)
         val adContainer = findViewById<RelativeLayout>(R.id.bannerAdView)
         val adUnitId = adUnit[bannerIndex]
-        adview.adUnitId = adUnitId
+        if (adUnitId != null) {
+            adview.adUnitId = adUnitId
+        }
         adview.setAdSize(AdSize.BANNER)
         adview.loadAd(
             AdRequest.Builder()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appbrodasampleapp.AppBrodaAdUnitHandler
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -11,19 +12,22 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class PageWithInterstitialAds : AppCompatActivity() {
     var mInterstitialAd: InterstitialAd? = null
-    private var adUnit: Array<String> = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_interstitialAds")
+    //private var adUnit: Array<String> = AppBrodaAdUnitHandler.loadAdUnit("com_example_samplekotapp_interstitialAds") as Array<String>
     var interstitialIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_interstitial_ads)
-        val adRequest = AdRequest.Builder().build()
-        loadInterstitialAd(adRequest, adUnit)
+        //val adRequest = AdRequest.Builder().build()
+        //loadInterstitialAd(adRequest, adUnit)
         val showAdButton = findViewById<Button>(R.id.showInterstitialAd)
         showAdButton.setOnClickListener {
-            if (mInterstitialAd != null) {
-                mInterstitialAd!!.show(this@PageWithInterstitialAds)
-            }
+            AppBrodaAdUnitHandler.showAd(this,"com_example_appbrodasampleapp_interstitialAds")
+            //if (mInterstitialAd != null) {
+            //    mInterstitialAd!!.show(this@PageWithInterstitialAds)
+            //}
         }
+        //AppBrodaAdUnitHandler.showQueue("com_example_samplekotapp_interstitialAds");
+        AppBrodaAdUnitHandler.showAllQueue()
     }
 
     private fun loadInterstitialAd(adRequest: AdRequest?, adUnit: Array<String>) {

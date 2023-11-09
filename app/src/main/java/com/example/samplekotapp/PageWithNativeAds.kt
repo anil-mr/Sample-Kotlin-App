@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appbrodasampleapp.AppBrodaAdUnitHandler
 import com.example.samplekotapp.databinding.AdUnifiedBinding
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -25,7 +26,7 @@ class PageWithNativeAds : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_native_ads)
         viewAds = findViewById(R.id.view_ads)
-        loadNativeAd(adUnit)
+        loadNativeAd(adUnit as Array<String>)
     }
 
     private fun loadNativeAd(adUnit:Array<String>) {
@@ -139,6 +140,6 @@ class PageWithNativeAds : AppCompatActivity() {
             nativeIndex = 0
             return
         }
-        loadNativeAd(adUnit)
+        loadNativeAd(adUnit as Array<String>)
     }
 }
