@@ -32,8 +32,9 @@ object AppBrodaAdUnitHandler {
         initAdsCache(ApplicationContext)
     }
 
-    fun fetchAndSaveAdUnits() {
+    fun fetchAndSaveAdUnits(ApplicationContext: Context?) {
         FirebaseRemoteConfig.getInstance().fetchAndActivate()
+        initAdsCache(ApplicationContext)
     }
 
     fun initAdsCache(ApplicationContext: Context?) {
