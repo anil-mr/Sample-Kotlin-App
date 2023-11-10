@@ -20,11 +20,7 @@ object AppBrodaAdUnitHandler {
     var unitIdToIndexMap: HashMap<String?, Int> = HashMap()
     var CacheMap: HashMap<String?, SortedMap<Int, String>> = HashMap()
 
-    //public static String[] unitIds = {"ca-app-pub-3940256099942544/1033173712","/6499/example/interstitial"};
-    //public static String[] unitIdsRewarded = {"/6499/example/rewarded","ca-app-pub-3940256099942544/5224354917"};
     var adsConfigArray = JSONArray()
-
-    var flip = true
     fun initRemoteConfigAndSaveAdUnits(ApplicationContext: Context?) {
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -42,20 +38,20 @@ object AppBrodaAdUnitHandler {
 
     fun initAdsCache(ApplicationContext: Context?) {
         var firebaseInstance = FirebaseRemoteConfig.getInstance()
-        var adUnitsConfigInterstitialQueueSize = FirebaseRemoteConfig.getInstance().getDouble("AdsConfig_Interstitial_QueueSize").takeIf { it != 0.0 } ?: 1
-        var adUnitsConfigInterstitialLoadInterval = FirebaseRemoteConfig.getInstance().getDouble("AdsConfig_Interstitial_LoadInterval").takeIf { it != 0.0 } ?: 1800
+        val adUnitsConfigInterstitialQueueSize = firebaseInstance.getDouble("AdsConfig_Interstitial_QueueSize").takeIf { it != 0.0 } ?: 1
+        val adUnitsConfigInterstitialLoadInterval = firebaseInstance.getDouble("AdsConfig_Interstitial_LoadInterval").takeIf { it != 0.0 } ?: 1800
 
-        var adUnitsConfigRewardedQueueSize = FirebaseRemoteConfig.getInstance().getDouble("AdsConfig_Rewarded_QueueSize").takeIf { it != 0.0 } ?: 1
-        var adUnitsConfigRewardedLoadInterval = FirebaseRemoteConfig.getInstance().getDouble("AdsConfig_Rewarded_LoadInterval").takeIf { it != 0.0 } ?: 3600
+        val adUnitsConfigRewardedQueueSize = firebaseInstance.getDouble("AdsConfig_Rewarded_QueueSize").takeIf { it != 0.0 } ?: 1
+        val adUnitsConfigRewardedLoadInterval = firebaseInstance.getDouble("AdsConfig_Rewarded_LoadInterval").takeIf { it != 0.0 } ?: 3600
 
         /* Define your ad units here */
-        addAdUnitToJsonArray(
+        pushAdUnitToConfig(
             "com_example_appbrodasampleapp_interstitialAds",
             "INTERSTITIAL",
             adUnitsConfigInterstitialQueueSize,
             adUnitsConfigInterstitialLoadInterval
         )
-        addAdUnitToJsonArray(
+        pushAdUnitToConfig(
             "com_example_appbrodasampleapp_rewardedAds",
             "REWARDED",
             adUnitsConfigRewardedQueueSize,
@@ -85,7 +81,6 @@ object AppBrodaAdUnitHandler {
 
     fun loadAdUnit(key: String?): Array<String?> {
         val value = FirebaseRemoteConfig.getInstance().getString(key!!)
-        //Log.d("newAds", "com_example_samplekotapp_interstitialAds is $value ") //?
         return if (value.isEmpty()) arrayOfNulls(0) else convertToArray(value)
     }
 
@@ -106,9 +101,6 @@ object AppBrodaAdUnitHandler {
     }
 
     fun showAd(activity: Activity?, adUnitId: String?) {
-        //Log.d("newAds", "Inside showAd $adUnitId")
-        //showAllQueue(); //?
-        //Log.d("newAds", "The while Priority map is $adUnitIdtoPriorityMap")
         val priorityMap = CacheMap[adUnitId]
         Log.d("OptiCache", "CacheMap $adUnitId = $priorityMap")
         val firstKey: Int? = priorityMap?.keys?.firstOrNull()
@@ -117,18 +109,12 @@ object AppBrodaAdUnitHandler {
             Log.d("OptiCache","Empty Cache.")
             return;
         }
-        //Log.d("newAds", "First key is : $firstKey") /?
+
         val unitId = priorityMap[firstKey]
         priorityMap.remove(firstKey)
         Log.d("OptiCache", "Showing ad: $unitId")
         Log.d("OptiCache", "Popped : $unitId")
         adsCache!!.showAd(unitId, activity)
-        //Log.d("newAds core", "After Remove") //?
-
-        /*for (key in priorityMap.keys) { //?
-            println("Key: " + key + ", Value: " + priorityMap[key])
-            Log.d("newAds core", "Key: " + key + ", Value: " + priorityMap[key])
-        }*/
     }
 
     fun storeUnitIdToAdUnitMap(unitIds: Array<String?>, adUnitId: String) {
@@ -137,14 +123,8 @@ object AppBrodaAdUnitHandler {
                 unitIdToAdUnitMap[unitIds[i]] = adUnitId
                 unitIdToIndexMap[unitIds[i]] = i
             }
-            //Log.d("newAds", "Saving for unitId $adUnitId") /?
             val priorityMap: SortedMap<Int, String> = TreeMap()
             CacheMap[adUnitId] = priorityMap
-            //Log.d("newAds", "After adding") ?
-            /*for (key in unitIdToAdUnitMap.keys) {
-                println("Key: " + key + ", Value: " + unitIdToAdUnitMap[key])
-                Log.d("newAds", "Key: " + key + ", Value: " + unitIdToAdUnitMap[key])
-            }*/
         } catch (e:Error){
             Log.e("OptiCache","Error creating custom maps")
         }
@@ -152,61 +132,39 @@ object AppBrodaAdUnitHandler {
 
     fun setUnitIdPriority(unitId: String) {
         val adUnit = unitIdToAdUnitMap[unitId]
-        //Log.d("newAds", "AdUnitId from unitIdToAdUnitMao $adUnit")/?
+        if(adUnit == null){
+            Log.d("OptiCache", "UnitId $unitId does not exists in map")
+            return;
+        }
 
-        val priorityMap = CacheMap[adUnit]
-        if (priorityMap != null) {
-            //Log.d("newAds", "Adding new unit id$unitId")/?
+        val optiCache = CacheMap[adUnit]
+        if (optiCache != null) {
             val index = unitIdToIndexMap[unitId]!!
-            //Log.d("newAds", "Index is$index")?
-            priorityMap[index] = unitId
-            //val priorityMap = priorityMap.toSortedMap(compareBy { it })
-            CacheMap[adUnit] = priorityMap
-            //Log.d("newAds", "Priority map")/?
-            /*for (key in priorityMap.keys) {
-                println("Key: " + key + ", Value: " + priorityMap[key])
-                Log.d("newAds core", "Key: " + key + ", Value: " + priorityMap[key])
-            }*/
-
-            //Log.d("newAds", "The Entire PriorityMapMap")/?
-            /*for (key1 in adUnitIdtoPriorityMap.keys) {
-                val map = adUnitIdtoPriorityMap[key1]!!
-                println("Key: " + key1 + ", Value: " + adUnitIdtoPriorityMap[key1])
-                Log.d("newAds", "AdUnitId: " + key1 + ", MAP: " + adUnitIdtoPriorityMap[key1])
-                for (key2 in map.keys) {
-                    println("Key: " + key2 + ", Value: " + map[key2])
-                    Log.d("newAds", "Key: " + key2 + ", Value: " + map[key2])
-                }
-
-            }*/
+            optiCache[index] = unitId
+            CacheMap[adUnit] = optiCache
             showQueue(adUnit);
-
         }
     }
 
     fun showQueue(adUnit: String?) {
-        val priorityMap = CacheMap[adUnit]!!
+        val optiCache = CacheMap[adUnit]!!
         Log.d("OptiCache", "Updated OptiCache - $adUnit")
-        for (key in priorityMap.keys) {
-            Log.d("OptiCache", " UnitId: " + priorityMap[key])
+        for (key in optiCache.keys) {
+            Log.d("OptiCache", " UnitId: " + optiCache[key])
         }
     }
 
     fun showAllQueue() {
-        Log.d("newAds", "Priority map show all Queue")
-
-        for (key1 in CacheMap.keys) {
-            Log.d("newAds", "Showing for $key1")
-            for (key in CacheMap[key1]!!.keys) {
-                println(
-                    "AdUnit: $key, Map: " + CacheMap[key1]!![key]
-                )
-                Log.d("newAds", "Key: $key, Value: " + CacheMap[key1]!![key])
+        Log.d("OptiCache", "Showing all Maps")
+        for (cacheMapKey in CacheMap.keys) {
+            Log.d("OptiCache", "Showing for $cacheMapKey")
+            for (key in CacheMap[cacheMapKey]!!.keys) {
+                Log.d("OptiCache", "AdUnit: $key - Map: " + CacheMap[cacheMapKey]!![key])
             }
         }
     }
 
-    fun addAdUnitToJsonArray(adUnitId: String, format: String?, queueSize: Number, loadInterval: Number) {
+    fun pushAdUnitToConfig(adUnitId: String, format: String?, queueSize: Number, loadInterval: Number) {
         val jsonArray = adsConfigArray
         val unitIds = loadAdUnit(adUnitId)
         for (i in unitIds.indices) {
@@ -217,7 +175,6 @@ object AppBrodaAdUnitHandler {
                 newElement.put("queueSize", queueSize)
                 newElement.put("loadInterval", loadInterval)
                 jsonArray.put(newElement)
-                Log.d("newAds", newElement["adUnitId"].toString())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
