@@ -32,7 +32,6 @@ class PageWithBannerAds : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_banner_ads)
         adContainer = findViewById(R.id.bannerAdView)
-        loadBannerAd(adUnit)
     }
 
     private fun loadBannerAd(adUnit: Array<String>?) {
@@ -154,14 +153,25 @@ class PageWithBannerAds : AppCompatActivity() {
 
     private fun restartAdFlow(){
         bannerIndex = 0
+        swapCount = 0
         isFirstImpression = true
         cancelAllActiveTimers()
         for(adView in adViews.values){
             adView.destroy()
         }
         adViews.clear()
-        adContainer.removeAllViews()
         loadBannerAd(adUnit)
+    }
+
+    // handle cleanups
+    override fun onPause() {
+        super.onPause()
+        cancelAllActiveTimers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        restartAdFlow()
     }
 
     override fun onDestroy() {
