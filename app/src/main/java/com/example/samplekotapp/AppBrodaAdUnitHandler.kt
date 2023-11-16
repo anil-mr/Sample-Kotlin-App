@@ -25,6 +25,11 @@ object AppBrodaAdUnitHandler {
         return convertToArray(value)
     }
 
+    fun getAdUnitRefreshRate(key:String):Int{
+        val refreshRate = FirebaseRemoteConfig.getInstance().getString(key + "_refresh_rate")
+        return refreshRate.toIntOrNull() ?: 30
+    }
+
     private fun convertToArray(value: String?): Array<String> {
         if(value.isNullOrEmpty()) return arrayOf()
         val array: Array<String> = value.substring(1, value.length - 1).split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
