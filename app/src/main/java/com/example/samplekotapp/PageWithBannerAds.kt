@@ -13,13 +13,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 
 
-const val REFRESH_RATE = 30  //change refresh rate based on your ad unit id refresh rates
-const val DURATION_BEFORE_REFRESH = 2000  // how long the ad has to be displayed just in time for a refresh
-const val ONE_SECOND = 1000  // 1000ms = 1s
-const val MAX_SWAP_DURATION = ((ONE_SECOND * REFRESH_RATE) - DURATION_BEFORE_REFRESH).toLong()
-const val DURATION_OF_REFRESH_ATTEMPT = (ONE_SECOND * 57).toLong() // 3 seconds to make sure the adView is on screen before refresh attempt
-const val MAX_SWAP_COUNT = (0.5 * REFRESH_RATE).toInt()   // after certain no of iterations we need to restart the entire flow again
-
 const val TAG = "bannerAds"
 class PageWithBannerAds : AppCompatActivity() {
     private var bannerIndex = 0
@@ -28,9 +21,17 @@ class PageWithBannerAds : AppCompatActivity() {
     private var isFirstImpression:Boolean = true
     private val activeTimers: MutableList<CountDownTimer> = mutableListOf()
     private var swapCount = 0
+    private lateinit var adContainer: RelativeLayout
+    private val refreshRate =  AppBrodaAdUnitHandler.getAdUnitRefreshRate("com_example_samplekotapp_bannerAds")
+    private val viewDurationBeforeRefresh = 2000  // how long the ad has to be displayed just in time for a refresh
+    private val oneSecondInMs = 1000  // 1000ms = 1s
+    private val maxSwapDuration = ((oneSecondInMs * refreshRate) - viewDurationBeforeRefresh).toLong()
+    private val durationTillFailedRefreshAttempt = (oneSecondInMs * 57).toLong() // 3 seconds to make sure the adView is on screen before refresh attempt
+    private val maxSwapCount = (0.5 * refreshRate).toInt()   // after certain no of iterations we need to restart the entire flow again
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_with_banner_ads)
+        adContainer = findViewById(R.id.bannerAdView)
         loadBannerAd(adUnit)
     }
 
@@ -53,24 +54,26 @@ class PageWithBannerAds : AppCompatActivity() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 Toast.makeText(
                     this@PageWithBannerAds,
-                    "Banner ad loading failed @index :$tempIndex",
+                    "Banner ad loading failed @index :$tempIndex + error ${adError.message}",
                     Toast.LENGTH_SHORT
                 ).show()
                 // we only need two adViews, with just these we can alternate b/w
                 if(adViews.size < 2 || adViews[tempIndex] == null){
+                    // destroy ad views which failed the first time
+                    adview.destroy()
                     loadNextAd()
                 }
                 // start a timer again only if the refresh has failed and not on the first load of this unit id
                 if(adViews[tempIndex] != null){
                     // if a refresh fails the sdk tries again in ~60 seconds
-                    startTimer(DURATION_OF_REFRESH_ATTEMPT, {
+                    startTimer(durationTillFailedRefreshAttempt, {
                         displayAd(tempIndex)
                     })
                 }
             }
 
             override fun onAdLoaded() {
-                if(adViews[tempIndex] == null) {
+                if(adViews[tempIndex] == null && adViews.size < 2) {
                     adViews[tempIndex] = adview
                     displayAd(tempIndex)
                 }
@@ -84,7 +87,7 @@ class PageWithBannerAds : AppCompatActivity() {
             override fun onAdImpression() {
                 Toast.makeText(
                     this@PageWithBannerAds,
-                    "Impressed @index :$tempIndex",
+                    "Impression received at index $tempIndex",
                     Toast.LENGTH_SHORT
                 ).show()
                 Log.i(TAG,"Impression received at index $tempIndex")
@@ -92,14 +95,14 @@ class PageWithBannerAds : AppCompatActivity() {
                 if(isFirstImpression){
                     // here ~700 is average take it takes for an ad to load, we need both the ads to be displayed for equal amount
                     // this will not guarantee exact equal watch time, but this will not create a huge difference b/w watch time of ad1 and ad2
-                    val swapTimerDuration = ((MAX_SWAP_DURATION * 0.5) - (adUnit.size - (tempIndex+1)) * 700).toLong()
+                    val swapTimerDuration = ((maxSwapDuration * 0.5) - (adUnit.size - (tempIndex+1)) * 700).toLong()
                     startTimer(swapTimerDuration, {
                         loadNextAd()
                     }, null)
                     isFirstImpression = false
                 }
 
-                startTimer(MAX_SWAP_DURATION, {
+                startTimer(maxSwapDuration, {
                     displayAd(tempIndex)
                 })
             }
@@ -130,13 +133,12 @@ class PageWithBannerAds : AppCompatActivity() {
     }
 
     private fun displayAd(index:Int){
-        if(swapCount >= MAX_SWAP_COUNT){
+        if(swapCount >= maxSwapCount){
             swapCount = 0
             restartAdFlow()
             return
         }
 
-        val adContainer = findViewById<RelativeLayout>(R.id.bannerAdView)
         val adView = adViews[index]
         adContainer.removeAllViews()
         if(adView != null) adContainer.addView(adView)
@@ -158,7 +160,7 @@ class PageWithBannerAds : AppCompatActivity() {
             adView.destroy()
         }
         adViews.clear()
-        findViewById<RelativeLayout>(R.id.bannerAdView).removeAllViews()
+        adContainer.removeAllViews()
         loadBannerAd(adUnit)
     }
 
